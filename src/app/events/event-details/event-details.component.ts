@@ -22,10 +22,20 @@ export class EventDetailsComponent {
 
   }
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventService.getEvent(+params['id']);
-      this.addMode = false;
-    })
+  //  this.route.data.forEach((params: Params) => {
+      //this.event = this.eventService.getEvent(+params['id']); //this would no longer work since an observable is return ,you need to subscribe as below
+
+      // this.eventService.getEvent(+params['id']).subscribe((event:IEvent) =>{
+      // this.event = event;
+      //   this.addMode = false;
+      // })
+      
+      //another change after introducing the event resolver
+      this.route.data.forEach((data) => {
+        this.event = data['event'];
+        this.addMode = false;
+      })
+    //})
   }
 
   addSession() {
@@ -36,7 +46,7 @@ export class EventDetailsComponent {
     const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
     session.id = nextId + 1
     this.event.sessions.push(session)
-    this.eventService.updateEvent(this.event)
+    this.eventService.saveEvent(this.event).subscribe();
     this.addMode = false
   }
 

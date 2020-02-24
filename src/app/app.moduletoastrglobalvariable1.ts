@@ -9,7 +9,7 @@ import {
   EventService,
   EventDetailsComponent,
   CreateEventComponent,
-  EventRouteActivator,
+  //EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
@@ -46,7 +46,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
   providers: [
     EventService, 
    // ToastrService, 
-    EventRouteActivator,
+    //EventRouteActivator,
     EventListResolver,
     AuthService,
     { 
